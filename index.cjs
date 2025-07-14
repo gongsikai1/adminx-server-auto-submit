@@ -12,4 +12,33 @@ const axios = require('axios');
   console.log('captchaId: ', result.data.data.captchaId);
   console.log('result: ', ret.data.text);
   await worker.terminate();
+
+  const username = 'pavitot133@iamtile.com';
+  const password = 'pavitot133@iamtile.comA'
+
+  const res = await fetch("http://115.190.9.242/api/auth/login", {
+    "headers": {
+      "accept": "application/json, text/plain, */*",
+      "accept-language": "zh-CN,zh;q=0.9",
+      "cache-control": "no-cache",
+      "content-type": "application/json;charset=UTF-8",
+      "pragma": "no-cache",
+      "proxy-connection": "keep-alive",
+      "Referer": "http://115.190.9.242/login?redirect=/home",
+      "Referrer-Policy": "strict-origin-when-cross-origin"
+    },
+    "body": `{\"username\":\"${username}\",\"password\":\"${password}\",\"captchaId\":\"${result.data.data.captchaId}\",\"code\":\"${ret.data.text.replace(/\s+/g, '')}\"}`,
+    "method": "POST"
+  });
+
+  const data = await res.json();
+  if (data.code !== 0) {
+    console.log('login failed: ', data);
+    return;
+  }
+  const token = data.data.token;
+  console.log('login token: ', token);
+  console.log('login response: ', await res.json());
+  console.log('login status: ', res.status);
+
 })();
