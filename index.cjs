@@ -15,8 +15,8 @@ const axios = require('axios');
     console.log('result: ', ret.data.text);
     await worker.terminate();
 
-    const username = 'pavitot133@iamtile.com';
-    const password = 'pavitot133@iamtile.comA'
+    const username = '2lwjb6tt4l@bltiwd.com';
+    const password = '2lwjb6tt4l@bltiwd.comA'
 
     // 登录
     const res = await fetch("http://115.190.9.242/api/auth/login", {
