@@ -37,6 +37,14 @@ const json = {
             account: 'oqmmz2b22t@zvvzuv.com',
             password: 'oqmmz2b22t@zvvzuv.comA'
         },
+        {
+            account: 'acpznx5izh@jxpomup.com',
+            password: 'acpznx5izh@jxpomup.comA'
+        },
+        {
+            account: '35j3jbzad7@wnbaldwy.com',
+            password: '35j3jbzad7@wnbaldwy.comA'
+        }
     ]
 }
 
