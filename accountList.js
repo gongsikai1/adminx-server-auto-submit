@@ -20,10 +20,15 @@ const json = {
             account: '16lxt5s8ih@qejjyl.com',
             password: '16lxt5s8ih@qejjyl.comA'
         },
+        // 发满了 文章、分类
         {
             account: '2lwjb6tt4l@bltiwd.com',
             password: '2lwjb6tt4l@bltiwd.comA'
-        }
+        },
+        {
+            account: '0s6cctphzw@qzueos.com',
+            password: '0s6cctphzw@qzueos.comA'
+        },
     ]
 }
 

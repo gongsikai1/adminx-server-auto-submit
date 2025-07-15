@@ -15,8 +15,8 @@ const axios = require('axios');
     console.log('result: ', ret.data.text);
     await worker.terminate();
 
-    const username = '2lwjb6tt4l@bltiwd.com';
-    const password = '2lwjb6tt4l@bltiwd.comA'
+    const username = '0s6cctphzw@qzueos.com';
+    const password = '0s6cctphzw@qzueos.comA';
 
     // 登录
     const res = await fetch("http://115.190.9.242/api/auth/login", {
@@ -80,10 +80,13 @@ const axios = require('axios');
     }
     // const articleRes = await article()
     for (let i = 0; i < 50; i++) {
+      console.log('Creating article', i + 1);
       try {
         await article();
+        console.log('Article created successfully', i + 1);
       } catch (e) {
         // console.error('Error in article creation:', e);
+        console.log('Article creation failed', i + 1);
       }
     }
     
@@ -123,9 +126,12 @@ const axios = require('axios');
     }
     // const categoryRes = await category()
     for (let i = 0; i < 3; i++) {
+      console.log('Creating category', i + 1);
       try {
         await category();
+        console.log('Category created successfully', i + 1);
       } catch (e) {
+        console.log('Category creation failed', i + 1);
         // console.error('Error in category creation:', e);
       }
     }
