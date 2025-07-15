@@ -136,6 +136,102 @@ const axios = require('axios');
       }
     }
 
+    // 新增评论
+
+    const articleList = async () => {
+      const res = await await fetch("http://115.190.9.242/api/article/page?size=10000&current=1&title=", {
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "accept-language": "zh-CN,zh;q=0.9",
+          "authorization": `Bearer ${token}`,
+          "cache-control": "no-cache",
+          "pragma": "no-cache",
+          "proxy-connection": "keep-alive",
+          "Referer": "http://115.190.9.242/article/manage",
+          "Referrer-Policy": "strict-origin-when-cross-origin"
+        },
+        "body": null,
+        "method": "GET"
+      });
+      return new Promise((resolve, reject) => {
+        res.json().then(data => {
+          if (data.code !== 200 || data.status === 401) {
+            console.log('articleList failed: ', data);
+            reject(data);
+          } else {
+            // console.log('articleList response: ', data);
+            console.log('articleList success: ', data);
+            resolve(data);
+          }
+        }).catch(err => {
+          // console.error('Error parsing JSON:', err);
+          reject(err);
+        });
+      });
+    }
+
+    const postComment = async (articleId) => {
+      const res = await fetch("http://115.190.9.242/api/comment/save", {
+        "headers": {
+          "accept": "application/json, text/plain, */*",
+          "accept-language": "zh-CN,zh;q=0.9",
+          "authorization": `Bearer ${token}`,
+          "cache-control": "no-cache",
+          "content-type": "application/json;charset=UTF-8",
+          "pragma": "no-cache",
+          "proxy-connection": "keep-alive",
+          "Referer": `http://115.190.9.242/article/detail/${articleId}`,
+          "Referrer-Policy": "strict-origin-when-cross-origin"
+        },
+        "body": JSON.stringify({
+          articleId,
+          // content: Math.random().toString(36).substring(2, 15) + ' ' + Math.random().toString(36).substring(2, 15)
+          content: Math.random()
+        }),
+        "method": "POST"
+      });
+      return new Promise((resolve, reject) => {
+        res.json().then(data => {
+          if (data.code !== 200 || data.status === 401) {
+            console.log('articleList failed: ', data);
+            reject(data);
+          } else {
+            // console.log('articleList response: ', data);
+            console.log('articleList success: ', data);
+            resolve(data);
+          }
+        }).catch(err => {
+          // console.error('Error parsing JSON:', err);
+          reject(err);
+        });
+      });
+    }
+
+    const articleListInfo = await articleList();
+    if (articleListInfo.code === 200) {
+      const list = articleListInfo.data.records;
+      for (let i = 0; i < list.length; i++) {
+        const article = list[i];
+        // Do something with each article
+        const articleId = article.articleId;
+        console.log(`Processing article ID: ${articleId}`);
+
+        for (let i = 0; i < 50; i++) {
+          console.log('Creating comment', i + 1);
+          try {
+            await postComment(articleId);
+            console.log('Comment created successfully', i + 1);
+          } catch (e) {
+            console.log('Comment creation failed', i + 1, e);
+            // console.error('Error in category creation:', e);
+          }
+        }
+
+        
+      }
+    }
+    console.log('articleListInfo: ', articleListInfo);
+
   }
 
   
