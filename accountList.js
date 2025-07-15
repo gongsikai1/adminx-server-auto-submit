@@ -29,7 +29,15 @@ const json = {
             account: '0s6cctphzw@qzueos.com',
             password: '0s6cctphzw@qzueos.comA'
         },
+        {
+            account: 'ke4x6b7j40@jkotypc.com',
+            password: 'ke4x6b7j40@jkotypc.comA'
+        },
+        {
+            account: 'oqmmz2b22t@zvvzuv.com',
+            password: 'oqmmz2b22t@zvvzuv.comA'
+        },
     ]
 }
 
-export default json;
+module.exports = json;
