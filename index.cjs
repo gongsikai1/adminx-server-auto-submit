@@ -4,7 +4,7 @@ const sleepUtils = require('sleep')
 const { sleep: sleepInfo } = sleepUtils;
 
 const sleep = (seconds) => {
-  sleepInfo(10)
+  sleepInfo(2)
 }
 
 (async () => {
