@@ -219,7 +219,7 @@ const sleep = (seconds) => {
       });
     }
 
-    await addCategory()
+    // await addCategory()
 
     // 新增评论
 
@@ -338,7 +338,7 @@ const sleep = (seconds) => {
       });
     }
 
-    await addComment()
+    // await addComment()
 
   }
 
