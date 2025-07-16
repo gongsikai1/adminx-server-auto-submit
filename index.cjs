@@ -49,16 +49,30 @@ const sleep = (seconds) => {
         
         
         if (res.status !== 200) {
-          if (res.status === 401) {
-            await setToken(username, password);
-          }
+          // if (res.status === 401) {
+          // await setTokenPromise(username, password);
+          // }
           reject(res);
           return;
         }
         res.json().then(async data => {
           if (data.code !== 200) {
-            console.log('login failed: ', data);
-            reject(data);
+            let token = '';
+            if (data.code === 500) {
+              while (!token) {
+                const newToken = await setTokenPromise(username, password);
+                console.log('newToken: ', newToken);
+                token = newToken;
+              }
+            }
+            if (token) {
+              console.log('login success: ', token);
+              resolve(token);
+            }
+            else {
+              console.log('login failed: ', data);
+              reject(data);
+            }
             return;
           }
           token = data.data.token;
@@ -81,7 +95,9 @@ const sleep = (seconds) => {
       }
     }
 
-    await setToken(username, password);
+    while (!token) {
+      await setToken(username, password);
+    }
     
 
     // 发表文章
@@ -142,7 +158,7 @@ const sleep = (seconds) => {
       });
     }
 
-    // await submitArticle()
+    await submitArticle()
     
     // 新增分类
 
@@ -327,7 +343,7 @@ const sleep = (seconds) => {
   }
 
   
-  for (const account of require('./accountList.js').list) {
+  for (const account of require('./accountList.js').list.reverse()) {
     const username = account.account;
     const password = account.password;
     console.log('Processing account:', username);
