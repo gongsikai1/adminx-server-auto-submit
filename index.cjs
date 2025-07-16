@@ -142,7 +142,7 @@ const sleep = (seconds) => {
       });
     }
 
-    await submitArticle()
+    // await submitArticle()
     
     // 新增分类
 
