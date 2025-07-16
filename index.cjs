@@ -1,7 +1,11 @@
 const { createWorker } = require('tesseract.js');
 const axios = require('axios');
 const sleepUtils = require('sleep')
-const { sleep } = sleepUtils;
+const { sleep: sleepInfo } = sleepUtils;
+
+const sleep = (seconds) => {
+  sleepInfo(10)
+}
 
 (async () => {
   const run = async (username, password) => {
